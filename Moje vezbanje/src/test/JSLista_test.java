@@ -4,7 +4,7 @@ import labis.cvorovi.CvorJSListe;
 import labis.exception.LabisException;
 import labis.liste.AJSLista;
 import labis.test.ListGenerator;
-import main.JSLista_vezbanje;
+import mainUmili.JSLista_vezbanje;
 
 public class JSLista_test extends ListGenerator{
 
@@ -15,7 +15,7 @@ public class JSLista_test extends ListGenerator{
 		};
 		ListGenerator.napraviJSListuCommon(lista, niz, false);
 		
-		CvorJSListe a;
+		//CvorJSListe a;
 		
 		JSLista_vezbanje o = new JSLista_vezbanje();
 		ListGenerator.ispisiJSListu(lista.prvi);

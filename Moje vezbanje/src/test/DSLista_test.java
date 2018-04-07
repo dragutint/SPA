@@ -4,7 +4,7 @@ import labis.cvorovi.CvorDSListe;
 import labis.exception.LabisException;
 import labis.liste.ADSLista;
 import labis.test.ListGenerator;
-import main.DSLista_vezbanje;
+import mainUmili.DSLista_vezbanje;
 
 public class DSLista_test extends ListGenerator{
 
