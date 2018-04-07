@@ -6,7 +6,12 @@ import labis.liste.AJSLista;
 
 public class JSLista_vezbanje extends AJSLista {
 
-	// zadaci za vezbanje 11
+	/**
+	 * Metoda koja vraca duzinu najduze neopadajuce podlise unutar zadate
+	 * @param prvi pokazivac na prvi element liste
+	 * @return najduzi predstavlja duzinu najduze podliste u int
+	 * @throws LabisException ukoliko je pocetna lista nepostojeca
+	 */
 	public int vratiNajduzuNeopadajucuPodlistu(CvorJSListe prvi) throws LabisException {
 
 		if (prvi == null) {
@@ -37,8 +42,12 @@ public class JSLista_vezbanje extends AJSLista {
 		return najduzi;
 	}
 
-	// zadaci za vezbanje 14
-
+	/**
+	 * Metoda koji izbacuje 2 i 3 element od pozadi iz JS liste
+	 * @param prvi pokazivac na prvi element JS liste
+	 * @return prvi pokazivac na prvi element liste
+	 * @throws LabisException ukoliko je pocetna lista prazna ili ima mnje od 3 elementa
+	 */
 	public CvorJSListe izbaci2i3odpozadi(CvorJSListe prvi) throws LabisException {
 
 		if (prvi == null) {
@@ -69,7 +78,13 @@ public class JSLista_vezbanje extends AJSLista {
 
 		return prvi;
 	}
-
+	
+	/**
+	 * Metoda koja vraca prosek parnih elemenata u listi
+	 * @param prvi pokazivacna prvi element liste
+	 * @return prosek prosek parnih elemnata kao double
+	 * @throws LabisException ukliko je pocetna lista nepostojeca ili prazna ili ukoliko ne postoji parni element u listi
+	 */
 	public double prosekParnih(CvorJSListe prvi) throws LabisException {
 
 		if (prvi == null) {
@@ -93,7 +108,14 @@ public class JSLista_vezbanje extends AJSLista {
 
 		throw new LabisException("U lisit nema parnih");
 	}
-
+	
+	/**
+	 * Metoda koja ubacuje element odmah nakom prvog elementa cija suma sa prethodnicima je veca od elementa koji se ubacuje.
+	 * @param prvi pokazivac na prvi element liste
+	 * @param p element koji se ubacuje u listu
+	 * @return prvi pokazivac na prvi element
+	 * @throws LabisException ukoliko je pocetna lista prazna ili ne postoji
+	 */
 	public CvorJSListe noviPrePrvog(CvorJSListe prvi, int p) throws LabisException {
 
 		if (prvi == null) {
@@ -117,7 +139,12 @@ public class JSLista_vezbanje extends AJSLista {
 		return prvi;
 
 	}
-
+	/**
+	 * Metoda koja invertuje JS listu uz pomoc novih struktura
+	 * @param prvi pokazivac na prvi element
+	 * @return prvi pokazivac na prvi element invertovane liste
+	 * @throws LabisException ukoliko je pocetna prazna ili ne postoji
+	 */
 	public CvorJSListe invertovanjeSaPomocnom(CvorJSListe prvi) throws LabisException {
 		if (prvi == null || prvi.sledeci == null) {
 			return null;
@@ -132,7 +159,12 @@ public class JSLista_vezbanje extends AJSLista {
 		prvi = novi;
 		return prvi;
 	}
-
+	/**
+	 * Metoda koja invertuje JS listu bez novih struktura
+	 * @param prvi pokazivac na prvi element
+	 * @return prvi pokazivac na prvi element invertovane liste
+	 * @throws LabisException ukoliko je pocetna prazna ili ne postoji
+	 */
 	public CvorJSListe invertovanjeBezPomocne(CvorJSListe prvi) throws LabisException {
 		if (prvi == null || prvi.sledeci == null) {
 			return null;
@@ -152,7 +184,12 @@ public class JSLista_vezbanje extends AJSLista {
 		
 		return prvi;
 	}
-	
+	/**
+	 * metoda koja proverava da li zadati element postoji u listi rekurzijom
+	 * @param prvi pokazivac na prvi element
+	 * @param p element koji se trazi
+	 * @return true ili false ukoliko je element nadje odnosno nije nadjen
+	 */
 	public boolean nadjiElementRekurzijom(CvorJSListe prvi, int p) {
 		
 		if(prvi == null) {
@@ -164,7 +201,11 @@ public class JSLista_vezbanje extends AJSLista {
 		}
 		return nadjiElementRekurzijom(prvi.sledeci, p);
 	}
-	
+	/**
+	 * Metoda koja proverava da li je lista rastuca rekurzijom
+	 * @param prvi pokazivac na prvi element
+	 * @return true ukoliko jeste, false ukoliko nije
+	 */
 	public boolean daLiJeSortiranaRastuce(CvorJSListe prvi) {
 		
 		if (prvi.sledeci == null) {
