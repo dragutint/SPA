@@ -1,4 +1,4 @@
-package main;
+package duda;
 
 import labis.test.ListGenerator;
 

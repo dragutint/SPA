@@ -1,4 +1,4 @@
-package main;
+package duda;
 
 import labis.cvorovi.CvorJSListe;
 import labis.exception.LabisException;
