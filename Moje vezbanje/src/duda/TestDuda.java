@@ -2,10 +2,10 @@ package duda;
 
 import labis.test.ListGenerator;
 
-public class Test {
+public class TestDuda {
 	
 	public static void main(String[] args) {
-		JSLista l = new JSLista();
+		JSListaDuda l = new JSListaDuda();
 		ListGenerator.napraviJSListuCommon(l, new int[] {-150,-34,3,5,6,7,8}, false);
 		
 		try {

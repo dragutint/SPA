@@ -4,7 +4,7 @@ import labis.cvorovi.CvorJSListe;
 import labis.exception.LabisException;
 import labis.liste.AJSLista;
 
-public class JSLista extends AJSLista{
+public class JSListaDuda extends AJSLista{
 	// prikaz liste
 	public void ispisiListu(CvorJSListe prvi) {
 		if(prvi == null) {
@@ -276,4 +276,6 @@ public class JSLista extends AJSLista{
 		return daLiJeSortiranaRastuceRekurzivno(prvi.sledeci);
 		
 	}
+	
+	
 }
