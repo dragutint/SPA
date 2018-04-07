@@ -1,10 +1,10 @@
-package test;
+package umi.test;
 
 import labis.cvorovi.CvorDSListe;
 import labis.exception.LabisException;
 import labis.liste.ADSLista;
 import labis.test.ListGenerator;
-import mainUmili.DSLista_vezbanje;
+import umi.main.DSLista_vezbanje;
 
 public class DSLista_test extends ListGenerator{
 

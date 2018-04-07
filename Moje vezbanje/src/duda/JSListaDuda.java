@@ -6,7 +6,7 @@ import labis.liste.AJSLista;
 
 public class JSListaDuda extends AJSLista{
 	// prikaz liste
-	public void ispisiListu(CvorJSListe prvi) {
+	public void ispisiListu() {
 		if(prvi == null) {
 			return;
 		}

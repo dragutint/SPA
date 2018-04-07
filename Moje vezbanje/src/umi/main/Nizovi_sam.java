@@ -1,4 +1,4 @@
-package mainUmili;
+package umi.main;
 
 import labis.exception.LabisException;
 import labis.niz.ANiz;

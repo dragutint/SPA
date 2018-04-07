@@ -1,10 +1,10 @@
-package test;
+package umi.test;
 
 import labis.cvorovi.CvorJSListe;
 import labis.exception.LabisException;
 import labis.liste.AJSLista;
 import labis.test.ListGenerator;
-import mainUmili.JSLista_vezbanje;
+import umi.main.JSLista_vezbanje;
 
 public class JSLista_test extends ListGenerator{
 

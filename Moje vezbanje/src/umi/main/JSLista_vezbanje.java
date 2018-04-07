@@ -1,4 +1,4 @@
-package mainUmili;
+package umi.main;
 
 import labis.cvorovi.CvorJSListe;
 import labis.exception.LabisException;

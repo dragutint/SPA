@@ -1,7 +1,7 @@
-package test;
+package umi.test;
 
 import labis.exception.LabisException;
-import mainUmili.Nizovi_sam;
+import umi.main.Nizovi_sam;
 
 public class Nizovi_test {
 

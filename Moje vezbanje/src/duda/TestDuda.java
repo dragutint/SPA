@@ -29,7 +29,7 @@ public class TestDuda {
 				System.out.println("Nije sortirana rastuce");
 			}
 			
-			l.ispisiListu(l.prvi);
+			l.ispisiListu();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
