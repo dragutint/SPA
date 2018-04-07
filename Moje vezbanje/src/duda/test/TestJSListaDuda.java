@@ -1,8 +1,9 @@
-package duda;
+package duda.test;
 
+import duda.main.JSListaDuda;
 import labis.test.ListGenerator;
 
-public class TestDuda {
+public class TestJSListaDuda {
 	
 	public static void main(String[] args) {
 		JSListaDuda l = new JSListaDuda();
