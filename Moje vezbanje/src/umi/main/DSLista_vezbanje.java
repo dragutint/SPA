@@ -136,16 +136,4 @@ public class DSLista_vezbanje extends ADSLista {
 		return prvi;
 		
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
