@@ -21,9 +21,27 @@ public class JSListaDuda extends AJSLista{
 		
 		CvorJSListe pom = prvi;
 		while(pom != null) {
-			System.out.print(pom.podatak + ", ");
+			System.out.print(pom.podatak + " ");
 			pom = pom.sledeci;
 		}
+		System.out.println();
+	}
+	
+	/**
+	 * Prikazuje listu
+	 * @param prvi pokazivac na prvi element liste
+	 */
+	public static void ispisiListu(CvorJSListe prvi) {
+		if(prvi == null) {
+			return;
+		}
+		
+		CvorJSListe pom = prvi;
+		while(pom != null) {
+			System.out.print(pom.podatak + " ");
+			pom = pom.sledeci;
+		}
+		System.out.println();
 	}
 	
 	/**
@@ -103,7 +121,7 @@ public class JSListaDuda extends AJSLista{
 	 * @param br broj za proveru
 	 * @return true ako postoji, false ako ne postoji
 	 */
-	public boolean daLiPostoji(CvorJSListe prvi, int br) {
+	public static boolean daLiPostoji(CvorJSListe prvi, int br) {
 		if(prvi == null) {
 			return false;
 		}
@@ -346,6 +364,141 @@ public class JSListaDuda extends AJSLista{
 		return najmanji.podatak;
 	}
 	
-
+	/**
+	 * Metoda koja trazi najduzu rastucu podlistu i vraca njenu duzinu
+	 * @return duzinu najduze rastuce podliste
+	 * @throws LabisException ako je lista prazna
+	 */
+	public int duzinaNajduzeRastucePodliste() throws LabisException {
+		if(prvi == null) {
+			throw new LabisException("Lista je prazna");
+		}
+		int duzina = 1;
+		int najduzaDuzina = 0;
+		
+		CvorJSListe pom = prvi;
+		while(pom.sledeci != null) {
+			if( pom.podatak <= pom.sledeci.podatak) {
+				duzina++;
+			} else {
+				if(duzina > najduzaDuzina) {
+					najduzaDuzina = duzina;
+				}
+				duzina = 1;
+			}
+			pom = pom.sledeci;
+		}
+		return najduzaDuzina;
+	}
 	
+	/**
+	 * Metoda koja spaja dve liste u jednu unakrsno
+	 * @param prva pokazivac na prvi element prve liste
+	 * @param druga pokazivac na prvi element druge liste
+	 * @return pokazivac na prvi element nove liste
+	 * @throws LabisException ukoliko su lose unete liste ili nisu iste duzine
+	 */
+	public CvorJSListe spojiDveListeIsteDuzineUnakrsno(CvorJSListe prva, CvorJSListe druga) throws LabisException {
+		CvorJSListe novaLista = null;
+		if(prva == null || druga == null) 
+			throw new LabisException();
+		
+		int brojac1 = 0, brojac2 = 0;
+		CvorJSListe pom1 = prva, pom2 = druga;
+
+		while(pom1 != null) {
+			brojac1++;
+			pom1 = pom1.sledeci;
+		}
+		while(pom2 != null) {
+			brojac2++;
+			pom2 = pom2.sledeci;
+		}
+		if(brojac1 != brojac2) 
+			throw new LabisException("Liste nisu iste duzine");
+		
+		pom1 = prva;
+		pom2 = druga;
+		int brojZaUnos;
+		int brojac = 0;
+		while(pom1 != null || pom2 != null) {
+			if(brojac % 2 == 0) {
+				brojZaUnos = pom1.podatak;
+				pom1 = pom1.sledeci;
+			} else {
+				brojZaUnos = pom2.podatak;
+				pom2 = pom2.sledeci;
+			}
+			brojac++;
+			// ubaci na kraj treba a ne na pocetak
+			novaLista = new CvorJSListe(brojZaUnos, novaLista);
+		}
+		return novaLista;
+	}
+	
+	/**
+	 * Metoda koja izbacuje drugi i treci element od pozadi iz liste
+	 * @throws LabisException ako je lista prazna, ima samo jedan element ili ima samo dva elementa
+	 */
+	public void izbaciDrugiITreciOdPozadi() throws LabisException {		
+		if (prvi == null) {
+			throw new LabisException("Lista je prazna");
+		}
+		if (prvi.sledeci == null) {
+			throw new LabisException("U listi ima samo 1 element");
+		}
+		if (prvi.sledeci.sledeci == null) {
+			throw new LabisException("U listi ima samo 2 elementa");
+		}
+		if (prvi.sledeci.sledeci.sledeci == null) {
+			prvi = prvi.sledeci.sledeci;
+			return;
+		}
+		
+		CvorJSListe pom = prvi;
+		int brojac = 0;
+		while (pom != null) {
+			brojac++;
+			pom = pom.sledeci;
+		}
+		// System.out.println(brojac);
+
+		pom = prvi;
+		for (int i = 0; i < brojac - 4; i++) {
+			pom = pom.sledeci;
+		}
+		pom.sledeci = pom.sledeci.sledeci.sledeci;
+	}
+	
+	//Simetricna razlika dve JS liste(unija bez preseka)
+	//Primer: 1 2 3 4 5 i 3 4 5 6 -> 1 2 6
+	/**
+	 * Metoda koja generise novu listu koja predstavlja simetricnu razliku dve liste
+	 * @param prva pokazivac na prvi element prve liste
+	 * @param druga pokazivac na prvi element druge liste
+	 * @return pokazivac na prvi element liste koja predstavlja simetricnu razliku prve i druge liste
+	 * @throws LabisException ukoliko su liste prazne
+	 */
+	public static CvorJSListe simetricnaRazlikaDveJSListe(CvorJSListe prva, CvorJSListe druga) throws LabisException {
+		if(prva == null && druga == null) {
+			throw new LabisException("Liste su prazne");
+		}
+		
+		CvorJSListe novaLista = null;
+		CvorJSListe pom = prva;
+		while(pom != null) {
+			if( !daLiPostoji(druga, pom.podatak) ) {
+				novaLista = new CvorJSListe(pom.podatak, novaLista);
+			}
+			pom = pom.sledeci;
+		}
+		pom = druga;
+		while(pom != null) {
+			if( !daLiPostoji(prva, pom.podatak) ) {
+				novaLista = new CvorJSListe(pom.podatak, novaLista);
+			}
+			pom = pom.sledeci;
+		}
+		return novaLista;
+	}
 }

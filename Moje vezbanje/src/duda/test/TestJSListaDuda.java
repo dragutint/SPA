@@ -7,7 +7,9 @@ public class TestJSListaDuda {
 	
 	public static void main(String[] args) {
 		JSListaDuda l = new JSListaDuda();
-		ListGenerator.napraviJSListuCommon(l, new int[] {15,34,3,5,6,7,8}, false);
+		JSListaDuda l1 = new JSListaDuda();
+		ListGenerator.napraviJSListuCommon(l, new int[] {2,3,4,5,6}, false);
+		ListGenerator.napraviJSListuCommon(l1, new int[] {5,6,7,8}, false);
 		
 		try {
 /*			
@@ -33,10 +35,22 @@ public class TestJSListaDuda {
 			l.ispisiListu();
 			System.out.println("Izbacen je broj " + l.izbaciNajmanjiElement());
 ////////////////////////////////////////////////////////////////////////////////////////////			
+			System.out.println(l.duzinaNajduzeRastucePodliste());
+////////////////////////////////////////////////////////////////////////////////////////////			
+			JSListaDuda l = new JSListaDuda();
+			JSListaDuda l1 = new JSListaDuda();
+			ListGenerator.napraviJSListuCommon(l, new int[] {15,13,11,10,9,10,8}, false);
+			ListGenerator.napraviJSListuCommon(l1, new int[] {15,13,11,10,9,10,8}, false);
+
+			l.ispisiListu( l.spojiDveListeIsteDuzineUnakrsno(l.prvi, l1.prvi));
+////////////////////////////////////////////////////////////////////////////////////////////			
+			l.ispisiListu();
+			l.izbaciDrugiITreciOdPozadi();
+////////////////////////////////////////////////////////////////////////////////////////////			
 */			
 			
 			
-			l.ispisiListu();
+			JSListaDuda.ispisiListu( JSListaDuda.simetricnaRazlikaDveJSListe(l.prvi,l1.prvi) );
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
