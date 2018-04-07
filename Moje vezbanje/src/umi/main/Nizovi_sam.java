@@ -23,7 +23,6 @@ public class Nizovi_sam extends ANiz {
 			}
 			brojac = 0;
 		}
-
 	}
 	
 	//vraca dvocifreni iz niza jednocifrenih, dvocifrenih i trocifrenih

@@ -4,8 +4,16 @@ import labis.cvorovi.CvorJSListe;
 import labis.exception.LabisException;
 import labis.liste.AJSLista;
 
+/**
+ * Klasa koja predstavlja JS listu - Duda
+ * @author Dragutin Todorovic
+ *
+ */
 public class JSListaDuda extends AJSLista{
-	// prikaz liste
+	
+	/**
+	 * Prikazuje listu
+	 */
 	public void ispisiListu() {
 		if(prvi == null) {
 			return;
@@ -18,8 +26,12 @@ public class JSListaDuda extends AJSLista{
 		}
 	}
 	
-	// broj pozitivnih elemenata - rekurzivno
-	public int pozitivniElementiRekurzivno(CvorJSListe prvi) throws LabisException {
+	/**
+	 * Metoda koja broji pozitivne elemente rekurzivno
+	 * @param prvi Cvor koji je prvi element liste
+	 * @return int broj pozitivnih elemenata
+	 */
+	public int pozitivniElementiRekurzivno(CvorJSListe prvi) {
 		if(prvi == null) {
 			return 0;
 		}
@@ -31,7 +43,12 @@ public class JSListaDuda extends AJSLista{
 		}	
 	}
 	
-	// metoda koja od JSListe pravi niz
+	/**
+	 * Pravi od JS Liste niz i vraca ga
+	 * @param prvi Cvor koji je prvi element liste
+	 * @return niz elemenata JS liste
+	 * @throws LabisException ako je lista prazna
+	 */
 	public int[] listaUNiz(CvorJSListe prvi) throws LabisException {
 		if(prvi == null) throw new LabisException();
 		
@@ -54,7 +71,12 @@ public class JSListaDuda extends AJSLista{
 		return niz;
 	}
 	
-	// metoda koja od dve JS liste pravi trecu i vraca je
+	/**
+	 * Metoda koja od dve JS liste pravi trecu i vraca je
+	 * @param prva pokazivac na prvi element prve liste
+	 * @param druga pokazivac na prvi element druge liste
+	 * @return pokazivac na prvi element nove liste
+	 */
 	public CvorJSListe unijaDveListe(CvorJSListe prva, CvorJSListe druga) {
 		if(prva == null && druga == null)
 			return null;
@@ -75,7 +97,12 @@ public class JSListaDuda extends AJSLista{
 		return novaLista;
 	}
 	
-	// metoda koja proverava da li postoji vrednost u JS listi
+	/**
+	 * Metoda koja proverava da li postoji vrednost u JS listi
+	 * @param prvi pokazivac na prvi element liste
+	 * @param br broj za proveru
+	 * @return true ako postoji, false ako ne postoji
+	 */
 	public boolean daLiPostoji(CvorJSListe prvi, int br) {
 		if(prvi == null) {
 			return false;
@@ -237,12 +264,12 @@ public class JSListaDuda extends AJSLista{
 		return daLiPostojiRekurzivno(prvi.sledeci, broj);
 	}
 	
-/*
- * Da li je lista sortirana u neopadajucem redosledu
-	a) iterativno
-	b) rekurzivno	
- */
-	// iterativno
+
+	/**
+	 * Metoda koja proverava da li je lista sortirana u rastucem redosledu - iterativno
+	 * @return true ako jeste sortirana u rastucem redosledu, false ako nije
+	 * @throws LabisException ako je lista prazna
+	 */
 	public boolean daLiJeSortiranaRastuceIterativno() throws LabisException {
 		if(prvi == null) {
 			throw new LabisException();
@@ -262,8 +289,12 @@ public class JSListaDuda extends AJSLista{
 		return true;
 	}
 	
-	//rekurzivno
-	public boolean daLiJeSortiranaRastuceRekurzivno(CvorJSListe prvi) throws LabisException {
+	/**
+	 * Metoda koja proverava da li je lista sortirana u rastucem redosledu - rekurzivno
+	 * @param prvi pokazivac na prvi element liste
+	 * @return true ako jeste sortirana u rastucem redosledu, false ako nije
+	 */
+	public boolean daLiJeSortiranaRastuceRekurzivno(CvorJSListe prvi) {
 		
 		if(prvi.sledeci == null) {
 			return true;
@@ -277,5 +308,44 @@ public class JSListaDuda extends AJSLista{
 		
 	}
 	
+	/**
+	 * Izbacuje najmanji element iz liste
+	 * @return broj koji je izbacen
+	 * @throws LabisException ako je lista prazna
+	 */
+	public int izbaciNajmanjiElement() throws LabisException {
+		if(prvi == null) {
+			throw new LabisException("Lista je prazna");
+		}
+		
+		if(prvi.sledeci == null) {
+			int br = prvi.podatak;
+			prvi = null;
+			return br;
+		}
+		
+		CvorJSListe najmanji = prvi;
+		CvorJSListe pom = prvi.sledeci;
+		while(pom != null) {
+			if(najmanji.podatak > pom.podatak) {
+				najmanji = pom;
+			}
+			pom = pom.sledeci;
+		}
+		
+		if(najmanji == prvi) {
+			prvi = prvi.sledeci;
+			return najmanji.podatak;
+		}
+		
+		pom = prvi;
+		while(pom.sledeci != najmanji) {
+			pom = pom.sledeci;
+		}
+		pom.sledeci = najmanji.sledeci;
+		return najmanji.podatak;
+	}
+	
+
 	
 }

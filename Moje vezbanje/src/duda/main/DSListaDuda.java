@@ -6,7 +6,7 @@ import labis.exception.LabisException;
 import labis.liste.ADSLista;
 
 /**
- * Klasa DS Lista - Duda
+ * Klasa koja predstavlja DS listu - Duda
  * @author Dragutin Todorovic
  *
  */
