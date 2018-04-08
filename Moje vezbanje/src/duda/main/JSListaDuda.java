@@ -507,17 +507,15 @@ public class JSListaDuda extends AJSLista{
 	// napisati metodu koja is JS liste izbacuje sve duplikate
 	/**
 	 * Metoda koja izbacuje duplikate iz JS liste
-	 * @throws LabisException ako lista ne postoji
-	 * @return	ako lista ima samo jedan element
+	 * @throws LabisException ako lista ne postoji 
 	 */
 	public void izbaciDuplikateIzListe() throws LabisException {
 		if(prvi == null) 
 			throw new LabisException("Lista ne postoji");
 		
 		if(prvi.sledeci == null) 
-			System.out.println("Lista ima samo jedan element");
-			return;
-			
+			throw new LabisException("Lista ima samo jedan element");
+		
 		CvorJSListe spori = prvi;
 		CvorJSListe brzi;
 		
