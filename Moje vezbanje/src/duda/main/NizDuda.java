@@ -91,4 +91,39 @@ public class NizDuda extends ANiz{
 		}
 	}
 	
+	//napisati metodu koja pronalazi zbir tri najvece vrednosti u nizu jednim prolaskom kroz niz
+	/**
+	 * Metoda koja pronalazi tri najvece vrednosti u nizu i vraca njihov zbir
+	 * @param niz niz u kom se traze vrednosti
+	 * @return zbir tri najvece vrednosti
+	 * @throws LabisException ako u nizu nema dovoljno brojeva, odnosno duzina niza je manja od 3 ili ako niz nije unet
+	 */
+	public int zbirTriNajveceVrednosti(int[] niz) throws LabisException {
+		if(niz == null) 
+			throw new LabisException("Niz ne postoji");
+		
+		if(niz.length < 3) 
+			throw new LabisException("U nizu nema dovoljno brojeva");
+		
+		int prvaVr = niz[0];
+		int drugaVr = niz[1];
+		int trecaVr = niz[2];
+		
+		for(int i = 3; i < niz.length; i++) {
+			if(niz[i] > prvaVr && drugaVr > prvaVr && trecaVr > prvaVr) {
+				prvaVr = niz[i];
+				continue;
+			}
+			if(niz[i] > drugaVr && prvaVr > drugaVr && trecaVr > drugaVr) {
+				drugaVr = niz[i];
+				continue;
+			}
+			if(niz[i] > trecaVr && prvaVr > trecaVr && drugaVr > trecaVr) {
+				trecaVr = niz[i];
+				continue;
+			}
+		}
+		
+		return prvaVr + drugaVr + trecaVr;
+	}
 }

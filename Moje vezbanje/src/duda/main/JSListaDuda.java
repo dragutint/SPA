@@ -501,4 +501,35 @@ public class JSListaDuda extends AJSLista{
 		}
 		return novaLista;
 	}
+	
+	
+	
+	// napisati metodu koja is JS liste izbacuje sve duplikate
+	/**
+	 * Metoda koja izbacuje duplikate iz JS liste
+	 * @throws LabisException ako lista ne postoji
+	 * @return	ako lista ima samo jedan element
+	 */
+	public void izbaciDuplikateIzListe() throws LabisException {
+		if(prvi == null) 
+			throw new LabisException("Lista ne postoji");
+		
+		if(prvi.sledeci == null) 
+			System.out.println("Lista ima samo jedan element");
+			return;
+			
+		CvorJSListe spori = prvi;
+		CvorJSListe brzi;
+		
+		while(spori.sledeci != null) {
+			brzi = spori.sledeci;
+			while( brzi != null && brzi.sledeci != null) {
+				if(brzi.sledeci.podatak == spori.podatak) {
+					brzi.sledeci = brzi.sledeci.sledeci;
+				}
+				brzi = brzi.sledeci;
+			}
+			spori = spori.sledeci;
+		}
+	}
 }
