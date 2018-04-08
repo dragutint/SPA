@@ -8,7 +8,7 @@ public class TestDSListaDuda {
 	public static void main(String[] args) {
 
 		DSListaDuda l = new DSListaDuda();
-		ListGenerator.napraviDSListuCommon(l, new int[] { 150, 34, 3, 6, 10, 6, 7, 8, 10, 11, 12 }, false);
+		ListGenerator.napraviDSListuCommon(l, new int[] { 10, 2, 7, 8, 10, 11 }, false);
 
 		try {
 /*
@@ -37,7 +37,7 @@ public class TestDSListaDuda {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 */
 
-			
+			System.out.println("Zbir elemenata koji su deljivi minimumom je " + l.zbirElemenataKojiSuDeljiviMinimumom() );
 			l.ispisiListu();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

@@ -183,4 +183,37 @@ public class DSListaDuda extends ADSLista {
 		prvi.prethodni.sledeci = prvi;
 		prvi = prvi.prethodni;
 	}
+	
+	/**
+	 * Metoda koja racuna zbir elemenata koji su deljivi najmanjim brojem iz liste
+	 * @return zbir
+	 * @throws LabisException ako je lista prazna
+	 */
+	public int zbirElemenataKojiSuDeljiviMinimumom() throws LabisException {
+		if(prvi == null) 
+			throw new LabisException("Lista je prazna");
+		
+		if(prvi.sledeci == null)
+			return 0;
+		
+		int minimum = prvi.podatak;
+		CvorDSListe pom = prvi.sledeci;
+		
+		while(pom != null) {
+			if(pom.podatak < minimum) 
+				minimum = pom.podatak;
+			pom = pom.sledeci;
+		}
+		
+		pom = prvi;
+		int zbir = 0;
+		
+		while(pom != null) {
+			if(pom.podatak % minimum == 0) 
+				zbir += pom.podatak;
+			pom = pom.sledeci;
+		}
+		
+		return zbir - minimum;
+	}
 }
