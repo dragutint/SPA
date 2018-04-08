@@ -135,7 +135,12 @@ public class JSListaDuda extends AJSLista{
 		return false;
 	}
 
-	// metoda koja vraca broj ponavljanja zadate vrednosti u listi
+	/**
+	 * Metoda koja vraca broj ponavljanja zadate vrednosti u listi
+	 * @param prvi pokazivac na prvi element u listi
+	 * @param br broj za proveru
+	 * @return broj ponavljana zadate vrednosti u listi
+	 */
 	public int frekvencijaBrojaUListi(CvorJSListe prvi, int br) {
 		if(prvi == null) 
 			return 0;
@@ -151,10 +156,15 @@ public class JSListaDuda extends AJSLista{
 		return frek;
 	}
 	
-	// metoda koja broji koliko ima elemenata u listi koji su veci od prvog elementa
+	/**
+	 * Metoda koja broji koliko ima elemenata u listi koji su veci od prvog elementa
+	 * @param prvi pokazivac na prvi element u listi
+	 * @return koliko ih ima
+	 * @throws LabisException ako je lista prazna
+	 */
 	public int prebrojVeceOdPrvog(CvorJSListe prvi) throws LabisException {
 		if(prvi == null) 
-			throw new LabisException();
+			throw new LabisException("Lista je prazna");
 		
 		int brojac = 0;
 		CvorJSListe pom = prvi.sledeci;
@@ -166,11 +176,15 @@ public class JSListaDuda extends AJSLista{
 		return brojac;
 	}
 	
-	// metoda koja izbacuje element koji se nalazi nakon elementa sa najmanjom vrednoscu
+	/**
+	 * Metoda koja izbacuje element nakon najmanjeg elementa u listi
+	 * @param prvi pokazivac na prvi element u listi
+	 * @return broj koji je izbacen
+	 * @throws LabisException ako je lista prazna ili ima samo jedan element
+	 */
 	public int izbaciElementNakonMinimuma(CvorJSListe prvi) throws LabisException {
-		if(prvi == null || prvi.sledeci == null) {
-			throw new LabisException();
-		}
+		if(prvi == null || prvi.sledeci == null) 
+			throw new LabisException("Lista je prazna ili ima samo jedan element u njoj");
 		
 		CvorJSListe min = prvi;
 		CvorJSListe pom = prvi.sledeci;
@@ -189,7 +203,11 @@ public class JSListaDuda extends AJSLista{
 		return br;
 	}
 	
-	// kloniraj listu rekurzivno - kopija date liste
+	/**
+	 * Metoda koja klonira listu rekurzivno - pravi novu listu istu kao onu koja je prosledjena
+	 * @param prvi pokazivac na prvi element liste
+	 * @return nova lista koja je ista kao i ona koja je prosledjena
+	 */
 	public CvorJSListe klonirajRekurzivno(CvorJSListe prvi) {
 		if(prvi == null) 
 			return null;
@@ -199,10 +217,13 @@ public class JSListaDuda extends AJSLista{
 		return novaLista;
 	}
 	
-	// vrati invertovanu listu sa pomocnom strukturom 
+	/**
+	 * Metoda koja invertuje listu koristeci pomocne strukture, funkcionise tako sto pravi novu listu dodavanjem na pocetak liste 
+	 * @throws LabisException ako je lista prazna
+	 */
 	public void invertujSaPomocnom() throws LabisException {
 		if(prvi == null) {
-			throw new LabisException();
+			throw new LabisException("Lista je prazna");
 		}
 		
 		CvorJSListe pom = prvi;
@@ -214,10 +235,13 @@ public class JSListaDuda extends AJSLista{
 		prvi = novaLista;
 	}
 	
-	// vrati invertovanu listu bez pomocne strukture (moze pokazivac)
+	/**
+	 * Metoda koja invertuje listu bez koriscenja pomocnih struktura, koristi se samo pokazivac na neki element
+	 * @throws LabisException ako je lista prazna
+	 */
 	public void invertujBezPomocne() throws LabisException {
 		if(prvi == null || prvi.sledeci == null) {
-			throw new LabisException();
+			throw new LabisException("Lista je prazna");
 		}
 		
 		CvorJSListe pom = prvi;
@@ -231,7 +255,11 @@ public class JSListaDuda extends AJSLista{
 		}
 	}
 	
-	//Metoda koja izbacuje iz JS liste cvor na koji je dat pokazivac
+	/**
+	 * Metoda koja izbacuje element iz JS liste na koji je dat pokazivac
+	 * @param element pokazivac na element za izbacivanje
+	 * @throws LabisException ako element ne postoji ili ako je lista prazna
+	 */
 	public void izbaciElement(CvorJSListe element) throws LabisException {
 		if(element == null || prvi == null) {
 			throw new LabisException();
@@ -248,12 +276,12 @@ public class JSListaDuda extends AJSLista{
 		
 		pom.sledeci = pom.sledeci.sledeci;
 	}
-	/*
-	Da li postoji zadata vrednost u JS/DS listi
-		a) iterativno
-		b) rekurzivno
-	*/
-	//iterativno
+
+	/**
+	 * Metoda koja proverava da li neki broj postoji u listi - iterativnim prolazom
+	 * @param broj broj za proveru
+	 * @return true ako postoji, false ako ne postoji
+	 */
 	public boolean daLiPostojiIterativno(int broj) {
 		if(prvi == null) {
 			return false;
@@ -270,14 +298,18 @@ public class JSListaDuda extends AJSLista{
 	}
 	
 	//rekurzivno
+	/**
+	 * Metoda koja proverava da li neki broj postoji u listi - rekurzivnim prolazom
+	 * @param prvi pokazivac na prvi element liste
+	 * @param broj broj za proveru
+	 * @return true ako postoji, false ako ne postoji
+	 */
 	public boolean daLiPostojiRekurzivno(CvorJSListe prvi, int broj) {
-		if(prvi.podatak == broj) {
+		if(prvi.podatak == broj) 
 			return true;
-		}
 		
-		if(prvi.sledeci == null) {
+		if(prvi.sledeci == null) 
 			return false;
-		}
 		
 		return daLiPostojiRekurzivno(prvi.sledeci, broj);
 	}
@@ -502,9 +534,6 @@ public class JSListaDuda extends AJSLista{
 		return novaLista;
 	}
 	
-	
-	
-	// napisati metodu koja is JS liste izbacuje sve duplikate
 	/**
 	 * Metoda koja izbacuje duplikate iz JS liste
 	 * @throws LabisException ako lista ne postoji 
@@ -530,4 +559,51 @@ public class JSListaDuda extends AJSLista{
 			spori = spori.sledeci;
 		}
 	}
+	
+	/**
+	 * Metoda koja izracunava i vraca aritmeticku sredinu liste
+	 * @return iznos aritmeticke sredine liste
+	 * @throws LabisException ako je lista prazna
+	 */
+	public double aritmetickaSredina() throws LabisException {
+		if(prvi == null) {
+			throw new LabisException("Lista je prazna");
+		}
+		
+		int suma = 0;
+		int brojac = 0;
+	
+		CvorJSListe pom = prvi;
+		while(pom != null) {
+			suma += pom.podatak;
+			brojac++;
+			pom = pom.sledeci;
+		}
+		return (double)suma / brojac;
+	}
+	
+	
+	/**
+	 * Metoda koja povecava parne elemente na neparnim pozicijama za iznos aritmeticke sredine liste
+	 * @throws LabisException
+	 */
+	public void povecajParneNaNeparnimZaAritmetickuSredinu() throws LabisException {
+		if(prvi == null) 
+			throw new LabisException("Lista je prazna");
+		
+		CvorJSListe pom = prvi;
+		int sredina = (int) aritmetickaSredina();
+		
+		while(pom != null) {
+			if( pom.podatak % 2 == 0)
+				pom.podatak += sredina;
+			
+			if(pom.sledeci == null) 
+				break;
+			
+			pom = pom.sledeci.sledeci;
+		}
+	}
+
+	
 }
