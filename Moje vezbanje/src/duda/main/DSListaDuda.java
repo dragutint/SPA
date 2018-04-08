@@ -239,5 +239,54 @@ public class DSListaDuda extends ADSLista {
 		prvi = novaLista;
 	}
 	
+	// vratiti pokazivac na element DS liste za koji vazi da je razlika
+	// zbirova svih levo od njega i svih desno od njega maksimalna.
+	public CvorDSListe razlikaZbirovaLevoIDesnoMinimalna() throws LabisException {
+		if(prvi == null) 
+			throw new LabisException("Lista je prazna");
+		
+		if(prvi.sledeci == null) 
+			throw new LabisException("Lista ima samo jedan element");
+		
+		int najmanjaRazlika = Integer.MAX_VALUE;
+		int razlika;
+		int zbirLevo;
+		int zbirDesno;
+		CvorDSListe cvorZaVracanje = null;
+		
+		CvorDSListe pom = prvi;
+		CvorDSListe pom2;
+		
+		while(pom != null) {
+			zbirLevo = 0;
+			zbirDesno = 0;
+			
+			pom2 = pom.prethodni;
+			while(pom2 != null) {
+				zbirLevo += pom2.podatak;
+				pom2 = pom2.prethodni;
+			}
+			
+			pom2 = pom.sledeci;
+			while(pom2 != null) {
+				zbirDesno += pom2.podatak;
+				pom2 = pom2.sledeci;
+			}
+			
+			if(zbirLevo > zbirDesno) 
+				razlika = zbirLevo - zbirDesno;
+			 else 
+				razlika = zbirDesno - zbirLevo;
+			
+			if( razlika < najmanjaRazlika) {
+				najmanjaRazlika = razlika;
+				cvorZaVracanje = pom;
+			}
+			
+			pom = pom.sledeci;
+		}
+		
+		return cvorZaVracanje;
+	}
 	
 }

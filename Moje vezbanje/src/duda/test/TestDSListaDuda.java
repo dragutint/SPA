@@ -2,13 +2,14 @@ package duda.test;
 
 import duda.main.DSListaDuda;
 import duda.main.JSListaDuda;
+import labis.cvorovi.CvorDSListe;
 import labis.test.ListGenerator;
 
 public class TestDSListaDuda {
 	public static void main(String[] args) {
 
 		DSListaDuda l = new DSListaDuda();
-		ListGenerator.napraviDSListuCommon(l, new int[] { 1,2,3,4 }, false);
+		ListGenerator.napraviDSListuCommon(l, new int[] { 1,2,3,4,5,6,7,8 }, false);
 
 		try {
 /*
@@ -36,9 +37,15 @@ public class TestDSListaDuda {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 			System.out.println("Zbir elemenata koji su deljivi minimumom je " + l.zbirElemenataKojiSuDeljiviMinimumom() );
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-*/
 			l.ispisiListu();
 			l.invertujListu();
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+			l.ispisiListu();
+			CvorDSListe cvor = l.razlikaZbirovaLevoIDesnoMinimalna();
+			System.out.println(cvor.podatak);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+*/
+
 			l.ispisiListu();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
