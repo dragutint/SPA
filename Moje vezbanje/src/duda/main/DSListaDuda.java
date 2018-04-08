@@ -216,4 +216,22 @@ public class DSListaDuda extends ADSLista {
 		
 		return zbir - minimum;
 	}
+	
+	public void invertujListu() throws LabisException {
+		if(prvi == null) 
+			throw new LabisException("Lista je prazna");
+		
+		if(prvi.sledeci == null)
+			return;
+		
+		CvorDSListe pom = prvi;
+		CvorDSListe novaLista = null;
+		
+		while(pom != null) {
+			novaLista = new CvorDSListe(pom.podatak, null, novaLista);
+			pom = pom.sledeci;
+		}
+		
+		prvi = novaLista;
+	}
 }
