@@ -217,6 +217,10 @@ public class DSListaDuda extends ADSLista {
 		return zbir - minimum;
 	}
 	
+	/**
+	 * Metoda koja invertuje listu
+	 * @throws LabisException ako je lista prazna
+	 */
 	public void invertujListu() throws LabisException {
 		if(prvi == null) 
 			throw new LabisException("Lista je prazna");
@@ -234,4 +238,6 @@ public class DSListaDuda extends ADSLista {
 		
 		prvi = novaLista;
 	}
+	
+	
 }
