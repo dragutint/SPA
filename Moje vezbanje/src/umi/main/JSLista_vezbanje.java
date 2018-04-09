@@ -349,7 +349,12 @@ public class JSLista_vezbanje extends AJSLista {
 		pom.sledeci = novi;
 		return prvi;
 	}
-	
+	/**
+	 * Metoda koja invertuje datu listu bez duplikata u njoj.
+	 * @param prvi pokazivac na prvi element liste
+	 * @return novi pokazivac na prvi element nove liste bez duplikata koja je invertovana pocetna
+	 * @throws LabisException ukoliko pocetna lista ne postoji
+	 */
 	public CvorJSListe invertujBezDupkiata(CvorJSListe prvi) throws LabisException{
 		
 		if(prvi == null) {
