@@ -7,7 +7,7 @@ import labis.liste.AJSLista;
 /**
  * Klasa koja predstavlja JS listu - Duda
  * @author Dragutin Todorovic
- *
+ * 
  */
 public class JSListaDuda extends AJSLista{
 	

@@ -9,7 +9,7 @@ public class TestDSListaDuda {
 	public static void main(String[] args) {
 
 		DSListaDuda l = new DSListaDuda();
-		ListGenerator.napraviDSListuCommon(l, new int[] { 1,2,3,4,5,6,7,8 }, false);
+		ListGenerator.napraviDSListuCommon(l, new int[] { 1,2,3,4,5,6,7 }, false);
 
 		try {
 /*
@@ -44,8 +44,14 @@ public class TestDSListaDuda {
 			CvorDSListe cvor = l.razlikaZbirovaLevoIDesnoMinimalna();
 			System.out.println(cvor.podatak);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+			CvorDSListe novaLista = l.kloniraj(l.prvi);
+			DSListaDuda.ispisiListu(novaLista);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 */
-
+			
+			
+			l.ispisiListu();
+			l.izbaciSveElementeSaParnihPozicija();
 			l.ispisiListu();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

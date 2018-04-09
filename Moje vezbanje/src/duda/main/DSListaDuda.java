@@ -30,6 +30,22 @@ public class DSListaDuda extends ADSLista {
 	}
 
 	/**
+	 * Prikaz DS liste
+	 */
+	public static void ispisiListu(CvorDSListe prvi) {
+		if (prvi == null) {
+			return;
+		}
+
+		CvorDSListe pom = prvi;
+		while (pom != null) {
+			System.out.print(pom.podatak + " ");
+			pom = pom.sledeci;
+		}
+		System.out.println();
+	}
+
+	/**
 	 * Ipisuje listu od pozadi
 	 */
 	public void ispisiListuOdPozadi() {
@@ -141,7 +157,9 @@ public class DSListaDuda extends ADSLista {
 
 	/**
 	 * Metoda koja izbacuje duplikate iz DS liste
-	 * @throws LabisException ako je lista prazna ili ima samo jedan element u njoj
+	 * 
+	 * @throws LabisException
+	 *             ako je lista prazna ili ima samo jedan element u njoj
 	 */
 	public void izbaciDuplikateIzListe() throws LabisException {
 		if (prvi == null)
@@ -154,8 +172,8 @@ public class DSListaDuda extends ADSLista {
 
 		while (spori.sledeci != null) {
 			brzi = spori.sledeci;
-			while(brzi != null && brzi.sledeci != null) {
-				if(brzi.podatak == spori.podatak) {
+			while (brzi != null && brzi.sledeci != null) {
+				if (brzi.podatak == spori.podatak) {
 					brzi.prethodni.sledeci = brzi.sledeci;
 					brzi.sledeci.prethodni = brzi.prethodni;
 				}
@@ -164,18 +182,20 @@ public class DSListaDuda extends ADSLista {
 			spori = spori.sledeci;
 		}
 	}
-	
+
 	/**
 	 * Metoda koja vrsi zamenu prva dva elementa u listi
-	 * @throws LabisException ako je lista prazna ili ako ima samo jedan element
+	 * 
+	 * @throws LabisException
+	 *             ako je lista prazna ili ako ima samo jedan element
 	 */
 	public void zameniMestaPrvaDvaElementa() throws LabisException {
-		if(prvi == null) 
+		if (prvi == null)
 			throw new LabisException("Lista je prazna");
-		
-		if(prvi.sledeci == null) 
+
+		if (prvi.sledeci == null)
 			throw new LabisException("U listi postoji samo jedan element");
-		
+
 		prvi.sledeci.prethodni = null;
 		prvi.sledeci = prvi.sledeci.sledeci;
 		prvi.prethodni = prvi.sledeci.prethodni;
@@ -183,110 +203,180 @@ public class DSListaDuda extends ADSLista {
 		prvi.prethodni.sledeci = prvi;
 		prvi = prvi.prethodni;
 	}
-	
+
 	/**
 	 * Metoda koja racuna zbir elemenata koji su deljivi najmanjim brojem iz liste
+	 * 
 	 * @return zbir
-	 * @throws LabisException ako je lista prazna
+	 * @throws LabisException
+	 *             ako je lista prazna
 	 */
 	public int zbirElemenataKojiSuDeljiviMinimumom() throws LabisException {
-		if(prvi == null) 
+		if (prvi == null)
 			throw new LabisException("Lista je prazna");
-		
-		if(prvi.sledeci == null)
+
+		if (prvi.sledeci == null)
 			return 0;
-		
+
 		int minimum = prvi.podatak;
 		CvorDSListe pom = prvi.sledeci;
-		
-		while(pom != null) {
-			if(pom.podatak < minimum) 
+
+		while (pom != null) {
+			if (pom.podatak < minimum)
 				minimum = pom.podatak;
 			pom = pom.sledeci;
 		}
-		
+
 		pom = prvi;
 		int zbir = 0;
-		
-		while(pom != null) {
-			if(pom.podatak % minimum == 0) 
+
+		while (pom != null) {
+			if (pom.podatak % minimum == 0)
 				zbir += pom.podatak;
 			pom = pom.sledeci;
 		}
-		
+
 		return zbir - minimum;
 	}
-	
+
 	/**
 	 * Metoda koja invertuje listu
-	 * @throws LabisException ako je lista prazna
+	 * 
+	 * @throws LabisException
+	 *             ako je lista prazna
 	 */
 	public void invertujListu() throws LabisException {
-		if(prvi == null) 
+		if (prvi == null)
 			throw new LabisException("Lista je prazna");
-		
-		if(prvi.sledeci == null)
+
+		if (prvi.sledeci == null)
 			return;
-		
+
 		CvorDSListe pom = prvi;
 		CvorDSListe novaLista = null;
-		
-		while(pom != null) {
+
+		while (pom != null) {
 			novaLista = new CvorDSListe(pom.podatak, null, novaLista);
 			pom = pom.sledeci;
 		}
-		
+
 		prvi = novaLista;
 	}
-	
-	// vratiti pokazivac na element DS liste za koji vazi da je razlika
-	// zbirova svih levo od njega i svih desno od njega maksimalna.
+
+	/**
+	 * Metoda koja vraca pokazivac na element DS liste za koji vazi da je razlika
+	 * zbirova levo od njega i desno od njega minimalna
+	 * 
+	 * @return pokazivac na taj element
+	 * @throws LabisException
+	 *             ako je lista prazna ili ima samo jedan element
+	 */
 	public CvorDSListe razlikaZbirovaLevoIDesnoMinimalna() throws LabisException {
-		if(prvi == null) 
+		if (prvi == null)
 			throw new LabisException("Lista je prazna");
-		
-		if(prvi.sledeci == null) 
+
+		if (prvi.sledeci == null)
 			throw new LabisException("Lista ima samo jedan element");
-		
+
 		int najmanjaRazlika = Integer.MAX_VALUE;
 		int razlika;
 		int zbirLevo;
 		int zbirDesno;
 		CvorDSListe cvorZaVracanje = null;
-		
+
 		CvorDSListe pom = prvi;
 		CvorDSListe pom2;
-		
-		while(pom != null) {
+
+		while (pom != null) {
 			zbirLevo = 0;
 			zbirDesno = 0;
-			
+
 			pom2 = pom.prethodni;
-			while(pom2 != null) {
+			while (pom2 != null) {
 				zbirLevo += pom2.podatak;
 				pom2 = pom2.prethodni;
 			}
-			
+
 			pom2 = pom.sledeci;
-			while(pom2 != null) {
+			while (pom2 != null) {
 				zbirDesno += pom2.podatak;
 				pom2 = pom2.sledeci;
 			}
-			
-			if(zbirLevo > zbirDesno) 
+
+			if (zbirLevo > zbirDesno)
 				razlika = zbirLevo - zbirDesno;
-			 else 
+			else
 				razlika = zbirDesno - zbirLevo;
-			
-			if( razlika < najmanjaRazlika) {
+
+			if (razlika < najmanjaRazlika) {
 				najmanjaRazlika = razlika;
 				cvorZaVracanje = pom;
 			}
+
+			pom = pom.sledeci;
+		}
+
+		return cvorZaVracanje;
+	}
+
+	/**
+	 * Metoda koja klonira datu DS listu - rekurzivno
+	 * 
+	 * @param prvi
+	 *            pokazivac na prvi element liste
+	 * @return klonirana lista
+	 */
+	public CvorDSListe kloniraj(CvorDSListe prvi) {
+		if (prvi == null)
+			return null;
+
+		return new CvorDSListe(prvi.podatak, prvi.prethodni, kloniraj(prvi.sledeci));
+	}
+
+	/**
+	 * Metoda koja izbacuje element iz DS liste
+	 * @param element element za izbacivanje
+	 * @return true ako jeste izbacen, false ako nije
+	 * @throws LabisException ako element ne postoji u memoriji ili je lista prazna
+	 */
+	public boolean izbaciElement(CvorDSListe element) throws LabisException {
+		if (element == null)
+			throw new LabisException("Element ne postoji");
+		if (prvi == null)
+			throw new LabisException("Lista je prazna");
+
+		CvorDSListe pom = prvi;
+		while (pom != null) {
+			if (pom.sledeci == element) {
+				pom.sledeci = element.sledeci;
+				element.sledeci.prethodni = pom;
+				return true;
+			}
+			pom = pom.sledeci;
+		}
+		return false;
+	}
+
+	/**
+	 * Metoda koja izbacuje sve elemente sa parnih pozicija
+	 * @throws LabisException ako je lista prazna
+	 */
+	public void izbaciSveElementeSaParnihPozicija() throws LabisException {
+		if (prvi == null)
+			throw new LabisException("Lista je prazna");
+
+		CvorDSListe pom = prvi;
+
+		while (pom.sledeci != null) {
+			if(pom.sledeci.sledeci == null) {
+				pom.sledeci = null;
+				break;
+			}
+			
+			pom.sledeci.sledeci.prethodni = pom;
+			pom.sledeci = pom.sledeci.sledeci;
 			
 			pom = pom.sledeci;
 		}
-		
-		return cvorZaVracanje;
 	}
-	
 }
