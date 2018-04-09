@@ -1,5 +1,6 @@
 package umi.main;
 
+import labis.cvorovi.CvorDSListe;
 import labis.cvorovi.CvorJSListe;
 import labis.exception.LabisException;
 import labis.liste.AJSLista;
@@ -216,6 +217,167 @@ public class JSLista_vezbanje extends AJSLista {
 		}
 		
 		return daLiJeSortiranaRastuce(prvi.sledeci);
+	}
+	/**
+	 * Metoda koja klonira datu listu rekurzivno
+	 * @param prvi pokazivac na prvi element date liste
+	 * @return novi pokazivac na prvi element nove liste
+	 */
+	public CvorJSListe klonirajListuRekurzivno(CvorJSListe prvi) {
+		
+		if(prvi == null) {
+			return null;
+		}
+		
+		CvorJSListe novi = new CvorJSListe(prvi.podatak, klonirajListuRekurzivno(prvi.sledeci));
+		return novi;
+	}
+	/**
+	 * Metoda koja proverava prosek parnih elemenata u ciklicnoj JS listi.
+	 * @param prvi pokazivac na priv element liste
+	 * @return prosek parnih elemenata
+	 * @throws LabisException ukoliko je lista prazna, ili nema parnih elmenata
+	 */
+	public int prosekParnihCiklicna(CvorJSListe prvi) throws LabisException{
+		
+		if(prvi == null) {
+			throw new LabisException("Lista ne postoji");
+		}
+		if (prvi.sledeci == prvi) {
+			if(prvi.podatak % 2 == 0) {
+				return prvi.podatak;
+			}
+			else {
+				throw new LabisException("U listi je jedan elmenet i on nije paran");
+			}
+		}
+		
+		int brojac = 0;
+		int suma = 0;
+		CvorJSListe pom = prvi.sledeci;
+		while (pom != prvi) {
+			if (pom.podatak % 2 == 0) {
+				suma = suma + pom.podatak;
+				brojac++;
+			}
+			pom = pom.sledeci;
+		}
+		if(prvi.podatak % 2 == 0) {
+			suma = suma + pom.podatak;
+			brojac++;
+		}
+		
+		if (brojac == 0) {
+			throw new LabisException("U lisit nema parnih elemenata");
+		}
+		
+		return suma/brojac;
+	}
+	/**
+	 * Metoda koja izbacuje sve elemente vece od svog prethodnika iz liste
+	 * 1 1 2 3 4 5 6 = 1 1 3 5 
+	 * @param prvi pokazivac na prvi element liste	
+	 * @return prvi pokazivac na prvi element liste
+	 * @throws LabisException ukoliko je lista prazna ili ima samo jedan element
+	 */
+	public CvorJSListe izbaciVece(CvorJSListe prvi) throws LabisException{
+		if(prvi == null) {
+			throw new LabisException("Lista ne postoji");
+		}
+		if(prvi.sledeci == null) {
+		 throw new LabisException("U listi je samo jedna element");
+		}
+		CvorJSListe drugi = prvi;
+		
+		while(drugi != null && drugi.sledeci != null) {
+			if(drugi.podatak < drugi.sledeci.podatak) {
+				drugi.sledeci = drugi.sledeci.sledeci;
+			}
+			drugi = drugi.sledeci;
+		}
+
+		return prvi;
+		
+	}
+	
+	public CvorJSListe izbaciDuplikate(CvorJSListe prvi) throws LabisException{
+		
+		if(prvi == null) {
+			throw new LabisException("Lista je prazna");
+		}
+		if(prvi.sledeci == null) {
+			throw new LabisException("U lisiti je samo jedan element");
+		}
+		
+		CvorJSListe fix = prvi;
+		CvorJSListe pom = prvi;
+		while(fix.sledeci != null) {
+			pom = fix.sledeci;
+			while(pom != null && pom.sledeci != null) {
+				if(fix.podatak == pom.sledeci.podatak) {
+					pom.sledeci = pom.sledeci.sledeci;
+				}
+				pom = pom.sledeci;
+			}
+			fix = fix.sledeci;
+		}
+		
+		return prvi;
+	}
+	
+	public CvorJSListe ubaciKumulativ(CvorJSListe prvi, int broj) throws LabisException{
+		
+		if(prvi == null) {
+			throw new LabisException("Lista je prazna");
+		}
+		int zbir = 0;
+		int zbir2 = 0;
+		CvorJSListe pom = prvi;
+		while(pom.sledeci != null) {
+			zbir = zbir + pom.podatak;
+			zbir2 = zbir + pom.sledeci.podatak;
+			if(zbir2 > broj) {
+				CvorJSListe novi = new CvorJSListe(broj, pom.sledeci);
+				pom.sledeci = novi;
+				return prvi;
+			}
+			pom = pom.sledeci;
+		}
+		
+		//nismo nasli ni jeda, dodajemo ga samo na kraj
+		CvorJSListe novi = new CvorJSListe(broj, null);
+		pom.sledeci = novi;
+		return prvi;
+	}
+	
+	public CvorJSListe invertujBezDupkiata(CvorJSListe prvi) throws LabisException{
+		
+		if(prvi == null) {
+			throw new LabisException("Lista ne postoji");
+		}
+		if(prvi.sledeci == null) {
+			return prvi;
+		}
+		CvorJSListe pom = prvi;
+		CvorJSListe novi = null;
+		CvorJSListe noviPom = novi;
+		boolean postoji = false;
+		while(pom != null) {
+			noviPom = novi;
+			while(noviPom != null) {
+				if(noviPom.podatak == pom.podatak) {
+					postoji = true;
+				}
+				noviPom = noviPom.sledeci;
+			}
+			if(postoji == false) {
+				novi = new CvorJSListe(pom.podatak, novi);
+			}
+			postoji = false;
+			pom = pom.sledeci;
+		}
+		
+		return novi;
 	}
 
 }

@@ -514,9 +514,10 @@ public class JSListaDuda extends AJSLista{
 		if(prvi == null) 
 			throw new LabisException("Lista ne postoji");
 		
-		if(prvi.sledeci == null) 
+		if(prvi.sledeci == null) {
 			System.out.println("Lista ima samo jedan element");
 			return;
+		}
 			
 		CvorJSListe spori = prvi;
 		CvorJSListe brzi;

@@ -10,7 +10,7 @@ public class DSLista_test extends ListGenerator{
 
 	public static void main(String[] args) {
 		
-		int[] niz = new int[] {1,2,3,4,5};
+		int[] niz = new int[] {1,2,3,4};
 		ADSLista lista = new ADSLista() {
 		};
 		ListGenerator.napraviDSListuCommon(lista, niz, false);
