@@ -5,7 +5,11 @@ import labis.niz.ANiz;
 
 public class Nizovi_sam extends ANiz {
 	
-	//ispisuje elemente koji se NE pojavljuju vise od jednom
+	/**
+	 * Metoda koja ispisuje elemente niza koji se NE pojavljuju vise od jednom (znaci samo jednom)
+	 * @param niz zadati niz
+	 * @throws LabisException ukoliko niz ne postoji ili je prazan
+	 */
 	public void zzv10(int niz[]) throws LabisException {
 
 		if (niz == null || niz.length == 0) {
@@ -26,6 +30,13 @@ public class Nizovi_sam extends ANiz {
 	}
 	
 	//vraca dvocifreni iz niza jednocifrenih, dvocifrenih i trocifrenih
+	/**
+	 * Metoda koja vraca dvocifreni element niza ako znamo da prvu idu jednocifreni, 
+	 * taj dvocifreni i onda trocifreni do kraja
+	 * @param niz zadati niz
+	 * @return niz[i] koji ce biti taj dvocifreni kao int
+	 * @throws LabisException ukoliko niz ne postoji ili je prazan ili ukoliko ne postoji dvocifreni broj
+	 */
 	public int zzv18(int niz[]) throws LabisException {
 		
 		if (niz == null || niz.length == 0) {
@@ -52,30 +63,37 @@ public class Nizovi_sam extends ANiz {
 		
 	}
 	
-	//Od dva napravi jedan koji je u rastucem redosledu ( nije uradjen sort)
-	public int[] zzv22(int a[], int b[]) {
-		
-		if (a == null || a.length == 0) {
-			return b;
-		}
-		if (b == null || b.length == 0) {
-			return a;
-		}
-
-		int[] novi = new int[a.length + b.length];
-		int brojac = 0;
-		for (int i = 0; i < a.length; i++) {
-			novi[i] = a[i];
-			brojac++;
-		}
-		for (int i = 0; i < b.length; i++) {
-			novi[brojac] = b[i];
-			brojac++;
-		}
-
-		return novi;
-	}
+//	Od dva napravi jedan koji je u rastucem redosledu ( nije uradjen sort)
+//	Uradjen je kasnije mnogo bolje tako da radi u svim mogucim situacijama za oba niza
+//	public int[] zzv22(int a[], int b[]) {
+//		
+//		if (a == null || a.length == 0) {
+//			return b;
+//		}
+//		if (b == null || b.length == 0) {
+//			return a;
+//		}
+//
+//		int[] novi = new int[a.length + b.length];
+//		int brojac = 0;
+//		for (int i = 0; i < a.length; i++) {
+//			novi[i] = a[i];
+//			brojac++;
+//		}
+//		for (int i = 0; i < b.length; i++) {
+//			novi[brojac] = b[i];
+//			brojac++;
+//		}
+//
+//		return novi;
+//	}
 	
+	/**
+	 * Metoda koja vraca treci najveci element u nizu u jednom prolazu
+	 * @param a niz koji je zadat
+	 * @return m3 treci najveci element
+	 * @throws LabisException ukoliko niz ne postoji ili ima manje od 3 elementa
+	 */
 	public int treciNajveci(int a[]) throws LabisException {
 		
 		if (a == null) {
@@ -106,7 +124,13 @@ public class Nizovi_sam extends ANiz {
 		}
 		return m3;
 	}
-	
+	/**
+	 * Metoda koja od dva rastuca niza pravi novi niz koji je opadajuci i sadrzi sve clanove oba niza.
+	 * @param a prvi niz
+	 * @param b drugi niz
+	 * @return null ukoliko su oba zadata niza prazna
+	 * 			novi[] koji predstavlja novi niz
+	 */
 	public int[] odDvaRastucaNoviOpadajuci(int[] a, int[] b) {
 		
 		if(a == null && b == null) {

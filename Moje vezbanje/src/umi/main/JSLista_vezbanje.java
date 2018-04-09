@@ -63,15 +63,7 @@ public class JSLista_vezbanje extends AJSLista {
 			return prvi.sledeci.sledeci;
 		}
 		CvorJSListe pom = prvi;
-		int brojac = 0;
-		while (pom != null) {
-			brojac++;
-			pom = pom.sledeci;
-		}
-		// System.out.println(brojac);
-
-		pom = prvi;
-		for (int i = 0; i < brojac - 4; i++) {
+		while (pom.sledeci.sledeci.sledeci.sledeci != null) {
 			pom = pom.sledeci;
 		}
 		pom.sledeci = pom.sledeci.sledeci.sledeci;
@@ -273,7 +265,7 @@ public class JSLista_vezbanje extends AJSLista {
 		return suma/brojac;
 	}
 	/**
-	 * Metoda koja izbacuje sve elemente vece od svog prethodnika iz liste
+	 * Metoda koja izbacuje sve elemente vece od svog prethodnika iz liste (gleda se samo ta pocetna lista)
 	 * 1 1 2 3 4 5 6 = 1 1 3 5 
 	 * @param prvi pokazivac na prvi element liste	
 	 * @return prvi pokazivac na prvi element liste
@@ -286,13 +278,13 @@ public class JSLista_vezbanje extends AJSLista {
 		if(prvi.sledeci == null) {
 		 throw new LabisException("U listi je samo jedna element");
 		}
-		CvorJSListe drugi = prvi;
+		CvorJSListe pom = prvi;
 		
-		while(drugi != null && drugi.sledeci != null) {
-			if(drugi.podatak < drugi.sledeci.podatak) {
-				drugi.sledeci = drugi.sledeci.sledeci;
+		while(pom != null && pom.sledeci != null) {
+			if(pom.podatak < pom.sledeci.podatak) {
+				pom.sledeci = pom.sledeci.sledeci;
 			}
-			drugi = drugi.sledeci;
+			pom = pom.sledeci;
 		}
 
 		return prvi;
@@ -355,7 +347,7 @@ public class JSLista_vezbanje extends AJSLista {
 			pom = pom.sledeci;
 		}
 		
-		//nismo nasli ni jeda, dodajemo ga samo na kraj
+		//nismo nasli ni jedan, dodajemo ga samo na kraj
 		CvorJSListe novi = new CvorJSListe(broj, null);
 		pom.sledeci = novi;
 		return prvi;
@@ -422,6 +414,53 @@ public class JSLista_vezbanje extends AJSLista {
 		
 		ispisiListuNaopacke(prvi.sledeci);
 		System.out.println(prvi.podatak);
+	}
+	
+	/**
+	 * Metoda koja vraca vrednost elementa koji je drugi po broju ponavljanja u listi (stavio sam da vracam preko pokazivaca
+	 * jer onda zadatak moze da se uradi i da kazu vrati pokazivac na taj element samo, isti je kod) 
+	 * @param prvi pokazivac na prvi element liste
+	 * @return ovajVrati.podatak element koji ispunjava uslov
+	 * @throws LabisException ukoliko lista ne postoji ili ukoliko se svi elementi u listi pojavlju isti broj puta
+	 */
+	public int vratiDrugiSaNajvisePonavljanja(CvorJSListe prvi) throws LabisException{
+		
+		if(prvi == null) {
+			throw new LabisException("lista ne postoji");
+		}
+		if(prvi.sledeci == null) {
+			return prvi.podatak;
+		}
+		CvorJSListe pom = prvi;
+		CvorJSListe ovajVrati = prvi;
+		CvorJSListe setac;
+		int brojac = 0;
+		int max1 = 0;
+		int max2 = 0;
+		while(pom != null) {
+			setac = prvi;
+			while(setac != null) {
+				if (pom.podatak == setac.podatak) {
+					brojac++;
+				}
+				setac = setac.sledeci;
+			}
+			if(brojac > max1) {
+				max2 = max1;
+				max1 = brojac;
+			}
+			else if(brojac > max2 && brojac != max1) {
+				max2 = brojac;
+				ovajVrati = pom;
+			}
+			brojac = 0;
+			pom = pom.sledeci;
+		}
+		if( max2 == 0) {
+			throw new LabisException("U listi se svi elementi pojavlju isti broj puta");
+		}
+		
+		return ovajVrati.podatak;
 	}
 	
 }

@@ -10,7 +10,7 @@ public class JSLista_test extends ListGenerator{
 
 	public static void main(String[] args) {
 		
-		int[] niz = new int[] {1,2,3,4,5,6};	
+		int[] niz = new int[] {1,2};	
 		AJSLista lista = new AJSLista() {
 		};
 		ListGenerator.napraviJSListuCommon(lista, niz, false);
@@ -123,7 +123,15 @@ public class JSLista_test extends ListGenerator{
 //		}
 		
 //		System.out.println(o.kolikoParnih(lista.prvi));
-		o.ispisiListuNaopacke(lista.prvi);
+//		o.ispisiListuNaopacke(lista.prvi);
+	
+		try {
+			k = o.vratiDrugiSaNajvisePonavljanja(lista.prvi);
+			System.out.println(k);
+		} catch (LabisException e) {
+			System.out.println(e);
+		}
+		
 		
 	}
 }
