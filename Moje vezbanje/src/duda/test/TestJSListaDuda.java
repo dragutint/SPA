@@ -8,7 +8,7 @@ public class TestJSListaDuda {
 	public static void main(String[] args) {
 		JSListaDuda l = new JSListaDuda();
 		JSListaDuda l1 = new JSListaDuda();
-		ListGenerator.napraviJSListuCommon(l, new int[] {6,2,3,4,2,5,4,3,6}, false);
+		ListGenerator.napraviJSListuCommon(l, new int[] {6,2,3,4,2}, false);
 		ListGenerator.napraviJSListuCommon(l1, new int[] {5,6,7,8}, false);
 		
 		try {
@@ -52,6 +52,10 @@ public class TestJSListaDuda {
 			l.ispisiListu();
 			l.izbaciDuplikateIzListe();
 			l.ispisiListu();
+////////////////////////////////////////////////////////////////////////////////////////////			
+			l.ispisiListu();
+			l.povecajParneNaNeparnimZaAritmetickuSredinu();
+////////////////////////////////////////////////////////////////////////////////////////////			
 ////////////////////////////////////////////////////////////////////////////////////////////			
 */			
 			

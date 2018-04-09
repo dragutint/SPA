@@ -10,12 +10,13 @@ public class JSLista_test extends ListGenerator{
 
 	public static void main(String[] args) {
 		
-		int[] niz = new int[] {1,2,3,3,3,3,3,3,4,4,4,5,5,5,1,1,1,2,2,2,};	
+		int[] niz = new int[] {1,2,3,4,5,6};	
 		AJSLista lista = new AJSLista() {
 		};
 		ListGenerator.napraviJSListuCommon(lista, niz, false);
 		
 		CvorJSListe a;
+		int k;
 		
 		JSLista_vezbanje o = new JSLista_vezbanje();
 		ListGenerator.ispisiJSListu(lista.prvi);
@@ -81,7 +82,7 @@ public class JSLista_test extends ListGenerator{
 //		System.out.println("__________");
 //		ListGenerator.ispisiJSListu(a);
 		
-		int k;
+
 //		try {
 //			k = o.prosekParnihCiklicna(lista.prvi);
 //			System.out.println(k);
@@ -113,13 +114,16 @@ public class JSLista_test extends ListGenerator{
 //			System.out.println(e);
 //		}
 		
-		try {
-			a = o.invertujBezDupkiata(lista.prvi);
-			System.out.println("__________");
-			ListGenerator.ispisiJSListu(a);
-		} catch (LabisException e) {
-			System.out.println(e);
-		}
+//		try {
+//			a = o.invertujBezDupkiata(lista.prvi);
+//			System.out.println("__________");
+//			ListGenerator.ispisiJSListu(a);
+//		} catch (LabisException e) {
+//			System.out.println(e);
+//		}
+		
+//		System.out.println(o.kolikoParnih(lista.prvi));
+		o.ispisiListuNaopacke(lista.prvi);
 		
 	}
 }

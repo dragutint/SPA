@@ -1,6 +1,5 @@
 package umi.main;
 
-import labis.cvorovi.CvorDSListe;
 import labis.cvorovi.CvorJSListe;
 import labis.exception.LabisException;
 import labis.liste.AJSLista;
@@ -299,7 +298,13 @@ public class JSLista_vezbanje extends AJSLista {
 		return prvi;
 		
 	}
-	
+	/**
+	 * Metoda koja iz lite izbacuje sve duplikate (nije savrsena, ne radi za slucajeve kada ima na primer 1 2 3 1 1 6) izbaci
+	 * samo jednu jedinicu
+	 * @param prvi pokazivac na prvi element liste
+	 * @return prvi pokazivac na listu bez duplikata
+	 * @throws LabisException ukoliko lista ne postoji ili ima samo jedan element
+	 */
 	public CvorJSListe izbaciDuplikate(CvorJSListe prvi) throws LabisException{
 		
 		if(prvi == null) {
@@ -324,7 +329,13 @@ public class JSLista_vezbanje extends AJSLista {
 		
 		return prvi;
 	}
-	
+	/**
+	 * Ubacuje novi element pre prvog cija suma sa prethodnima je veca od elementa koji se ubacuje.
+	 * @param prvi pokazivac
+	 * @param broj broj koji se ubacuje
+	 * @return prvi pokazivac na prvi elment liste
+	 * @throws LabisException ukoliko je lista prazna 
+	 */
 	public CvorJSListe ubaciKumulativ(CvorJSListe prvi, int broj) throws LabisException{
 		
 		if(prvi == null) {
@@ -384,5 +395,33 @@ public class JSLista_vezbanje extends AJSLista {
 		
 		return novi;
 	}
-
+	/**
+	 * Metoda koja proverava koliko ima parnih elemenata u listi rekurzivno.
+	 * @param prvi pokazivac na prvi element liste za koju proveravamo
+	 * @return broj parnih kao int
+	 */
+	public int kolikoParnih(CvorJSListe prvi) {
+		
+		if(prvi == null) {
+			return 0;
+		}
+		
+		if(prvi.podatak % 2 == 0) {
+			return 1 + kolikoParnih(prvi.sledeci);
+		}
+		else {
+			return kolikoParnih(prvi.sledeci);
+		}
+	}
+	
+	public void ispisiListuNaopacke(CvorJSListe prvi) {
+		
+		if(prvi == null) {
+			return;
+		}
+		
+		ispisiListuNaopacke(prvi.sledeci);
+		System.out.println(prvi.podatak);
+	}
+	
 }

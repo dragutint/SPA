@@ -106,6 +106,45 @@ public class Nizovi_sam extends ANiz {
 		}
 		return m3;
 	}
+	
+	public int[] odDvaRastucaNoviOpadajuci(int[] a, int[] b) {
+		
+		if(a == null && b == null) {
+			return null;
+		}
+		
+		int[] novi = new int[a.length + b.length];
+		int brEl = 0;
+		int indexA = a.length - 1;
+		int indexB = b.length - 1;
+		for(int i = 0; i<novi.length; i++) {
+			if( indexA >= 0 && indexB >= 0 ){ //postoje oba niza i imaju elemente
+				if(a[indexA] > b[indexB]) {
+					novi[brEl] = a[indexA];
+					brEl++;
+					indexA--;
+				}
+				if(b[indexB] > a[indexA]) {
+					novi[brEl] = b[indexB];
+					brEl++;
+					indexB--;
+				}
+			}
+			if( indexA < 0 && indexB >= 0) { //u A nema vise al ima u B
+				novi[brEl] = b[indexB];
+				brEl++;
+				indexB--;
+			}
+			if( indexB < 0 && indexA >= 0) { //u B nema vise al ima u A
+				novi[brEl] = a[indexA];
+				brEl++;
+				indexA--;
+			}
+		}
+		
+		return novi;
+		
+	}
 
 }
 
